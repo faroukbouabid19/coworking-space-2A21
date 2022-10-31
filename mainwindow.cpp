@@ -1,48 +1,101 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <bureaux.h>
+#include <QIntValidator>
+#include <QMessageBox>
 #include <QPixmap>
 
-//Test
-
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->LECapacitemax->setValidator (new QIntValidator(0,20, this));
+    ui->TabBureau->setModel(B.afficher());
 
+     QPixmap pixBureau("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/Icons/Bureau.ico");
+     ui->label_pic_Bureau->setPixmap(pixBureau);
+     QPixmap pixAcceuil("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/Icons/Acceuil.ico");
+     ui->label_pic_Acceuil_2->setPixmap(pixAcceuil);
 
-    QPixmap pixAcceuil("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/Icons/home.ico");
-    ui->label_pic_Acceuil->setPixmap(pixAcceuil);
-    ui->label_pic_Acceuil2->setPixmap(pixAcceuil);
-    QPixmap pixChercher("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/Icons/1.ico");
-    ui->label_pic_Chercher->setPixmap(pixChercher);
-    ui->label_pic_Chercher1->setPixmap(pixChercher);
-    ui->label_pic_Chercher2->setPixmap(pixChercher);
-    QPixmap pixAjouter("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/Icons/2.ico");
-    ui->label_pic_Ajouter->setPixmap(pixAjouter);
-    ui->label_pic_Ajouter1->setPixmap(pixAjouter);
-    //QPixmap pixTrier("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/Icons/3.ico");
-   // ui->label_pic_Trier->setPixmap(pixTrier);
-
-    QPixmap pixModifier("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/Icons/4.ico");
-    ui->label_pic_Modifier->setPixmap(pixModifier);
-    ui->label_pic_Modifier1->setPixmap(pixModifier);
-    QPixmap pixAfficher("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/Icons/5.ico");
-  //  ui->label_pic_Afficher->setPixmap(pixAfficher);
-    ui->label_pic_Afficher1->setPixmap(pixAfficher);
-    QPixmap pixSupprimer("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/Icons/6.ico");
-    ui->label_pic_Supprimer->setPixmap(pixSupprimer);
-    ui->label_pic_Supprimer1->setPixmap(pixSupprimer);
-    QPixmap pixSatistiques("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/Icons/7.ico");
-    ui->label_pic_Statistiques->setPixmap(pixSatistiques);
-    ui->label_pic_Statistiques1->setPixmap(pixSatistiques);
-    QPixmap pixQR("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/Icons/qr.ico");
-    ui->label_pic_QR->setPixmap(pixQR);
-    ui->label_pic_QR1->setPixmap(pixQR);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_pb_ajouter_clicked()
+{
+     QString numbureau=ui->LENum->text();
+     int capacitemax=ui->LECapacitemax->text().toInt();
+     QString disponibilite=ui->LEDisponibilite->text();
+     QString typebureau=ui->LETypeBureau->text();
+
+
+    Bureau B(numbureau,capacitemax,disponibilite,typebureau);
+bool test=B.ajouter();
+ if(test)
+ {    ui->TabBureau->setModel(B.afficher());
+     QMessageBox::information(nullptr, QObject::tr("ok"),
+                                    QObject::tr("ajout effectue.\n"
+                                                "Click Cancel to exit."), QMessageBox::Cancel);
+
+}
+ else
+     QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                 QObject::tr("ajout non effectue.\n"
+                             "Click Cancel to exit."), QMessageBox::Cancel);
+
+}
+
+
+void MainWindow::on_pb_supp_clicked()
+{
+    QString numbureau=ui->LENumsupp->text();
+     bool test=B.supprimer(numbureau);
+
+     if (test)
+     {
+         ui->TabBureau->setModel(B.afficher());
+     QMessageBox::information(nullptr, QObject::tr("OK"),
+                                 QObject::tr("suppression effectué.\n"
+                                             "Click Cancel to exit."), QMessageBox::Cancel);
+     }
+     else
+     QMessageBox::critical(nullptr, QObject::tr("not OK"),
+                         QObject::tr("suppression failed.\n"
+                                     "Click Cancel to exit."), QMessageBox::Cancel);
+
+}
+
+
+
+void MainWindow::on_pb_modif_clicked()
+{
+
+    QString numbureau=ui->LENum->text();
+    int capacitemax=ui->LECapacitemax->text().toInt();
+    QString disponibilite=ui->LEDisponibilite->text();
+    QString typebureau=ui->LETypeBureau->text();
+
+
+   Bureau B(numbureau,capacitemax,disponibilite,typebureau);
+
+
+
+    bool test=B.modifier();
+
+        if(test){
+            ui->TabBureau->setModel(B.afficher());
+                    QMessageBox::information(nullptr, QObject::tr("OK"),
+                                QObject::tr("modification effectué.\n"
+                                            "Click Cancel to exit."), QMessageBox::Cancel);
+
+        }
+        else
+            QMessageBox::critical(nullptr, QObject::tr("not OK"),
+                        QObject::tr("modification failed.\n"
+                                    "Click Cancel to exit."), QMessageBox::Cancel);
 }
 

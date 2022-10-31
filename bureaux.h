@@ -1,25 +1,37 @@
 #ifndef BUREAUX_H
 #define BUREAUX_H
 
-#include <QDialog>
+#include <QString>
+#include<QSqlQueryModel>
 
-namespace Ui {
-class Bureaux;
-}
-
-class Bureaux : public QDialog
+class Bureau
 {
-    Q_OBJECT
-
 public:
-    explicit Bureaux(QWidget *parent = nullptr);
-    ~Bureaux();
+    Bureau();
+    Bureau(QString,int,QString,QString);
 
-private slots:
-    void on_pushButton_38_clicked();
+    QString getnumbureau();
+    int getcapacitemax();
+    QString getdisponibilite();
+    QString gettypebureau();
+
+    void setnumbureau(QString);
+    void setcapacitemax(int);
+    void setdisponibilite(QString);
+    void settypebureau(QString);
+
+    bool ajouter();
+    QSqlQueryModel* afficher();
+    bool supprimer(QString);
+    bool modifier();
+
+
+
 
 private:
-    Ui::Bureaux *ui;
+    int capacitemax;
+    QString numbureau,disponibilite,typebureau;
 };
+
 
 #endif // BUREAUX_H

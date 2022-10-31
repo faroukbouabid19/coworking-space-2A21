@@ -1,48 +1,75 @@
 #include "bureaux.h"
-#include "ui_bureaux.h"
-#include <QPixmap>
-
-
-Bureaux::Bureaux(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::Bureaux)
+#include<QSqlQuery>
+#include <QtDebug>
+#include<QObject>
+Bureau::Bureau()
 {
-    ui->setupUi(this);
-
-    QPixmap pixAcceuil("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/Icons/home.ico");
-    ui->label_pic_Acceuil->setPixmap(pixAcceuil);
-    QPixmap pixChercher("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/Icons/1.ico");
-    ui->label_pic_Chercher->setPixmap(pixChercher);
-    ui->label_pic_Chercher1->setPixmap(pixChercher);
-    QPixmap pixAjouter("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/Icons/2.ico");
-    ui->label_pic_Ajouter->setPixmap(pixAjouter);
-    ui->label_pic_Ajouter1->setPixmap(pixAjouter);
-    //QPixmap pixTrier("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/Icons/3.ico");
-   // ui->label_pic_Trier->setPixmap(pixTrier);
-
-    QPixmap pixModifier("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/Icons/4.ico");
-    ui->label_pic_Modifier->setPixmap(pixModifier);
-    ui->label_pic_Modifier1->setPixmap(pixModifier);
-    QPixmap pixAfficher("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/Icons/5.ico");
-  //  ui->label_pic_Afficher->setPixmap(pixAfficher);
-    //ui->label_pic_Afficher1->setPixmap(pixAfficher);
-    QPixmap pixSupprimer("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/Icons/6.ico");
-    ui->label_pic_Supprimer->setPixmap(pixSupprimer);
-    ui->label_pic_Supprimer1->setPixmap(pixSupprimer);
-    QPixmap pixSatistiques("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/Icons/7.ico");
-    ui->label_pic_Statistiques->setPixmap(pixSatistiques);
-    ui->label_pic_Statistiques1->setPixmap(pixSatistiques);
-    QPixmap pixQR("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/Icons/qr.ico");
-    ui->label_pic_QR->setPixmap(pixQR);
-    ui->label_pic_QR1->setPixmap(pixQR);
+    capacitemax=0;
+numbureau=" ";disponibilite=" ",typebureau=" ";
 }
 
-Bureaux::~Bureaux()
+Bureau::Bureau(QString numbureau,int capacitemax,QString disponibilite,QString typebureau)
+{this->numbureau=numbureau;this->capacitemax=capacitemax,this->disponibilite=disponibilite;this->typebureau=typebureau;}
+QString Bureau::getnumbureau(){return numbureau;}
+int Bureau::getcapacitemax(){return capacitemax;}
+QString Bureau::getdisponibilite(){return disponibilite;}
+QString Bureau::gettypebureau(){return typebureau;}
+
+void Bureau::setnumbureau(QString numbureau){this->numbureau=numbureau;}
+void Bureau::setcapacitemax(int capacitemax){this->capacitemax=capacitemax;}
+void Bureau::setdisponibilite(QString disponibilite){this->disponibilite=disponibilite;}
+void Bureau::settypebureau(QString typebureau){this->typebureau=typebureau;}
+bool Bureau::ajouter()
 {
-    delete ui;
+            QSqlQuery query;
+
+                 query.prepare("INSERT INTO bureau (numbureau,capacitemax,disponibilite,typebureau) "
+                               "VALUES (:numbureau, :capacitemax, :disponibilite,:typebureau)");
+                 query.bindValue(":numbureau", numbureau);
+                 query.bindValue(":capacitemax", capacitemax);
+                 query.bindValue(":disponibilite", disponibilite);
+                 query.bindValue(":typebureau", typebureau);
+
+
+
+    return   query.exec();
+}
+bool Bureau::supprimer(QString numbureau)
+{
+     QSqlQuery query;
+     query.prepare("Delete from bureau where numbureau=:numbureau");
+     query.bindValue(":numbureau",numbureau);
+
+return   query.exec();
+
 }
 
-void Bureaux::on_pushButton_38_clicked()
+QSqlQueryModel* Bureau::afficher()
 {
-    //
+      QSqlQueryModel* model=new QSqlQueryModel();
+    model->setQuery("SELECT* FROM bureau");
+    model->setHeaderData(0, Qt::Horizontal,QObject:: tr("Numero Bureau"));
+    model->setHeaderData(1, Qt::Horizontal, QObject:: tr("Capacite Max"));
+    model->setHeaderData(2, Qt::Horizontal, QObject:: tr("Disponibilite"));
+    model->setHeaderData(3, Qt::Horizontal, QObject:: tr("Type Bureau"));
+
+
+    return  model;
 }
+bool Bureau ::modifier()
+{
+                       QSqlQuery query;
+
+
+    query.prepare("UPDATE bureau SET numbureau=:numbureau,capacitemax=:capacitemax,disponibilite=:disponibilite,typebureau=:typebureau WHERE numbureau=:numbureau ");
+
+    query.bindValue(":numbureau", numbureau);
+    query.bindValue(":capacitemax", capacitemax);
+    query.bindValue(":disponibilite", disponibilite);
+    query.bindValue(":typebureau", typebureau);
+
+                     return query.exec();}
+
+
+
+

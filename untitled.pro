@@ -1,4 +1,5 @@
 QT       += core gui
+QT += sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,15 +18,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     bureaux.cpp \
+    connection.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    tutogit.cpp
 
 HEADERS += \
     bureaux.h \
-    mainwindow.h
+    connection.h \
+    mainwindow.h \
+    tutogit.h
 
 FORMS += \
-    bureaux.ui \
     mainwindow.ui
 
 # Default rules for deployment.
