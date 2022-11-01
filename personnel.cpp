@@ -2,6 +2,7 @@
 #include<QSqlQuery>
 #include<QSqlQueryModel>
 #include<QObject>
+//ici c'est le gestion
 personnel::personnel()
 {
 age=0;nom="" ;id="";titre="";date=""; prenom="" ;
