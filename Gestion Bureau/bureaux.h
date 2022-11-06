@@ -4,21 +4,22 @@
 #include <QString>
 #include<QSqlQuery>
 #include<QSqlQueryModel>
+#include<QTableView>
 
 class Bureau
 {
 
 public:
     Bureau();
-    Bureau(QString,int,QString,QString);
+    Bureau(QString,QString,QString,QString);
 
     QString getnumbureau();
-    int getcapacitemax();
+    QString getcapacitemax();
     QString getdisponibilite();
     QString gettypebureau();
 
     void setnumbureau(QString);
-    void setcapacitemax(int);
+    void setcapacitemax(QString);
     void setdisponibilite(QString);
     void settypebureau(QString);
 
@@ -27,12 +28,21 @@ public:
     bool supprimer(QString);
     bool modifier();
 
+    QSqlQueryModel * trieCapacite();
+    QSqlQueryModel * trieNum();
+    QSqlQueryModel * trieType();
+    QSqlQueryModel * trieDisponibilite();
+
+    void recherche(QTableView * table, QString);
+
+
+
 
 
 
 private:
-    int capacitemax;
-    QString numbureau,disponibilite,typebureau;
+
+    QString numbureau,disponibilite,typebureau,capacitemax;
 };
 
 
