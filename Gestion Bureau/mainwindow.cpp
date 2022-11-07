@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QPixmap>
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -148,3 +149,39 @@ void MainWindow::on_BaRecherche_textChanged(const QString &arg1)
                      ui->TabBureau->setModel(B.afficher());
                  }
 }
+
+
+void MainWindow::on_PDF_clicked()
+{
+    QSqlQuery query;
+    //QString val = ui->label_pdf->text();
+   // query.prepare("select * from joueurs where id='"+val+"'");
+query.prepare("select * from Bureau where numbureau");
+ B.telechargerPDF();
+    if(query.exec()){
+
+        while(query.next())
+        {
+
+         //B.telechargerPDF(val);
+        ui->LENum->setText(query.value(0).toString());
+        ui->ComboCapacitemax->setCurrentText(query.value(1).toString());
+        ui->ComboDispo->setCurrentText(query.value(2).toString());
+        ui->LETypeBureau->setText(query.value(3).toString());
+        QMessageBox::critical(nullptr, QObject::tr(" echoué"),
+                    QObject::tr("Erreur !.\n"
+                                "Click Cancel to exit."), QMessageBox::Cancel);
+
+
+
+  }
+    }
+    else
+        QMessageBox::information(nullptr,QObject::tr("OK"),
+                   QObject::tr("Téléchargement terminé"), QMessageBox::Cancel);
+
+
+
+}
+
+

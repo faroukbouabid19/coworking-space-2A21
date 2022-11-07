@@ -35,6 +35,10 @@ private slots:
 
     void on_BaRecherche_textChanged(const QString &arg1);
 
+
+    void on_PDF_clicked();
+
+
 private:
     Ui::MainWindow *ui;
     Bureau B;

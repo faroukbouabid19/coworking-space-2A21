@@ -1,10 +1,15 @@
 #ifndef BUREAUX_H
 #define BUREAUX_H
-
 #include <QString>
 #include<QSqlQuery>
 #include<QSqlQueryModel>
 #include<QTableView>
+#include <QPdfWriter>
+#include <QPainter>
+
+
+
+
 
 class Bureau
 {
@@ -35,10 +40,7 @@ public:
 
     void recherche(QTableView * table, QString);
 
-
-
-
-
+    void telechargerPDF();
 
 private:
 

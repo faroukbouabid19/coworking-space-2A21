@@ -321,7 +321,7 @@ color:rgb(255, 255, 255);
       <widget class="QLabel" name="label_77">
        <property name="geometry">
         <rect>
-         <x>610</x>
+         <x>560</x>
          <y>30</y>
          <width>111</width>
          <height>16</height>
@@ -335,7 +335,7 @@ color:rgb(255, 255, 255);
        <property name="geometry">
         <rect>
          <x>1100</x>
-         <y>10</y>
+         <y>20</y>
          <width>51</width>
          <height>51</height>
         </rect>
@@ -359,34 +359,6 @@ color:rgb(255, 255, 255);
        <property name="title">
         <string>Statistiques Bureaux</string>
        </property>
-       <widget class="QComboBox" name="comboBox_15">
-        <property name="geometry">
-         <rect>
-          <x>120</x>
-          <y>30</y>
-          <width>141</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">
-background-color: rgb(67, 189, 226);
-border-radius: 10px; 
-padding: 0 8px; 
-color:rgb(255, 255, 255);
-</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>Bureau non équipé</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Bureau équipé</string>
-         </property>
-        </item>
-       </widget>
        <widget class="QLabel" name="label_pic_Statistiques1_2">
         <property name="geometry">
          <rect>
@@ -400,14 +372,36 @@ color:rgb(255, 255, 255);
          <string/>
         </property>
        </widget>
-       <widget class="QTableView" name="tableView">
+       <widget class="QPushButton" name="pb_stat">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>30</y>
+          <width>171</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:rgb(67, 189, 226);
+  border-radius: 6px;
+  border: none;
+color:rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string>Afficher Statistiques</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_stat">
         <property name="geometry">
          <rect>
           <x>60</x>
-          <y>60</y>
+          <y>70</y>
           <width>261</width>
           <height>131</height>
          </rect>
+        </property>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </widget>
@@ -692,7 +686,7 @@ padding: 0 8px; </string>
       <widget class="QRadioButton" name="trieNum">
        <property name="geometry">
         <rect>
-         <x>160</x>
+         <x>150</x>
          <y>30</y>
          <width>61</width>
          <height>20</height>
@@ -705,7 +699,7 @@ padding: 0 8px; </string>
       <widget class="QRadioButton" name="trieType">
        <property name="geometry">
         <rect>
-         <x>480</x>
+         <x>450</x>
          <y>30</y>
          <width>61</width>
          <height>20</height>
@@ -718,7 +712,7 @@ padding: 0 8px; </string>
       <widget class="QRadioButton" name="trieCapacite">
        <property name="geometry">
         <rect>
-         <x>240</x>
+         <x>220</x>
          <y>30</y>
          <width>97</width>
          <height>20</height>
@@ -731,7 +725,7 @@ padding: 0 8px; </string>
       <widget class="QRadioButton" name="trieDisponibilite">
        <property name="geometry">
         <rect>
-         <x>350</x>
+         <x>320</x>
          <y>30</y>
          <width>121</width>
          <height>20</height>
@@ -744,7 +738,7 @@ padding: 0 8px; </string>
       <widget class="QLineEdit" name="BaRecherche">
        <property name="geometry">
         <rect>
-         <x>740</x>
+         <x>680</x>
          <y>30</y>
          <width>331</width>
          <height>22</height>
@@ -875,7 +869,7 @@ selection-background-color: darkgray;
        <widget class="QLabel" name="label_7">
         <property name="geometry">
          <rect>
-          <x>40</x>
+          <x>50</x>
           <y>110</y>
           <width>111</width>
           <height>20</height>
@@ -885,7 +879,7 @@ selection-background-color: darkgray;
          <string>Exporter PDF:</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pb_modif_2">
+       <widget class="QPushButton" name="PDF">
         <property name="geometry">
          <rect>
           <x>40</x>

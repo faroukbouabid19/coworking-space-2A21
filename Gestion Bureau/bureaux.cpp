@@ -2,6 +2,11 @@
 #include<QSqlQuery>
 #include <QtDebug>
 #include<QObject>
+#include <QPdfWriter>
+#include <QPainter>
+
+
+
 Bureau::Bureau()
 {
 
@@ -128,6 +133,44 @@ QSqlQueryModel * Bureau::trieCapacite()
         }
 
 
+        void  Bureau::telechargerPDF(){
 
+
+
+                            QPdfWriter pdf("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/Export PDF/PDF.pdf");
+
+
+                              QPainter painter(&pdf);
+                             int i = 3500;
+                                  painter.setPen(Qt::red);
+                                  painter.setFont(QFont("Century Gothic", 30,QFont::Bold));
+                                  painter.drawText(2900,1400,"Liste des bureaux");
+                                  painter.setPen(Qt::black);
+                                  painter.drawLine(500,3000,9000,3000);
+                                  painter.drawLine(3000,2500,3000,12000);
+                                  painter.drawLine(5000,2500,5000,12000);
+                                  painter.drawLine(7000,2500,7000,12000);
+                                  painter.setFont(QFont("Calibri",14,QFont::Bold));
+                                  painter.drawText(1000,2800,"Numéro Bureau");
+                                  painter.drawText(3300,2800,"Capacité MAX");
+                                  painter.drawText(5300,2800,"Disponibilité");
+                                  painter.drawText(7300,2800,"Type Bureau");
+
+
+
+                                  QSqlQuery query;
+                                  query.prepare("select * from bureaux");
+                                  query.exec();
+                                  while (query.next())
+                                  {
+                                      painter.setFont(QFont("Calibri",14));
+                                      painter.drawText(1200,i,query.value(0).toString());
+                                      painter.drawText(3400,i,query.value(1).toString());
+                                      painter.drawText(5300,i,query.value(2).toString());
+                                      painter.drawText(7500,i,query.value(3).toString());
+
+
+                                     i = i + 500;
+                                  }}
 
 
