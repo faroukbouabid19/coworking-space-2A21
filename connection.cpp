@@ -4,18 +4,13 @@ Connection::Connection(){}
 
 bool Connection::createconnect()
 {
-QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
-bool test=false;
+ db = QSqlDatabase::addDatabase("QODBC");
+ bool test=false;
+db.setDatabaseName("Test");
+db.setUserName("farouk");
+db.setPassword("farouk");
+if (db.open()) test=true;
 
-db.setDatabaseName("test");
-db.setUserName("farouk");//inserer nom de l'utilisateur
-db.setPassword("farouk");//inserer mot de passe de cet utilisateur
-
-if (db.open())
-test=true;
-
-
-return  test;
+    return  test;
 }
-
-void Connection::closeConnection(){db.close();}
+void Connection::closeconnect(){db.close();}
