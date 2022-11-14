@@ -3,6 +3,11 @@
 
 #include <QMainWindow>
 #include "bureaux.h"
+#include "statistique.h"
+#include "images.h"
+#include "qrcodegen.hpp"
+
+
 namespace Ui {
 class MainWindow;
 }
@@ -32,16 +37,21 @@ private slots:
 
     void on_TabBureau_clicked(const QModelIndex &index);
 
-
     void on_BaRecherche_textChanged(const QString &arg1);
-
 
     void on_PDF_clicked();
 
+    void on_pb_stat_clicked();
+
+    void on_pb_images_clicked();
 
 private:
+
     Ui::MainWindow *ui;
     Bureau B;
+    statistique *s;
+    Images *i;
+
 };
 
 #endif // MAINWINDOW_H

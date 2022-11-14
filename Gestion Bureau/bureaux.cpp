@@ -4,6 +4,15 @@
 #include<QObject>
 #include <QPdfWriter>
 #include <QPainter>
+#include <QDate>
+#include <QIntValidator>
+#include <QMessageBox>
+#include <QPixmap>
+#include<QPrinter>
+#include<QPrintDialog>
+#include <QPrintPreviewDialog>
+#include <QDesktopServices>
+#include <QUrl>
 
 
 
@@ -142,6 +151,10 @@ QSqlQueryModel * Bureau::trieCapacite()
 
                               QPainter painter(&pdf);
                              int i = 3500;
+
+                                  QPixmap pixmapl("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/logoprojet4.png");
+                                  QPixmap pixmapl2("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/logoesprit.png");
+
                                   painter.setPen(Qt::red);
                                   painter.setFont(QFont("Century Gothic", 30,QFont::Bold));
                                   painter.drawText(2900,1400,"Liste des bureaux");
@@ -155,8 +168,14 @@ QSqlQueryModel * Bureau::trieCapacite()
                                   painter.drawText(3300,2800,"Capacité MAX");
                                   painter.drawText(5300,2800,"Disponibilité");
                                   painter.drawText(7300,2800,"Type Bureau");
+                                  painter.drawPixmap(100,100,1600,500, pixmapl);
+                                  painter.drawPixmap(7900,140,1500,500, pixmapl2);
 
+                                  QString s = QDate::currentDate().toString();
 
+                                  painter.setFont(QFont("Arial",10));
+
+                                   painter.drawText(4200,1700,s);
 
                                   QSqlQuery query;
                                   query.prepare("select * from bureaux");
@@ -171,6 +190,11 @@ QSqlQueryModel * Bureau::trieCapacite()
 
 
                                      i = i + 500;
-                                  }}
+                                  }
+
+
+                                          QDesktopServices::openUrl(QUrl::fromLocalFile("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/Export PDF/PDF.pdf"));
+
+        }
 
 

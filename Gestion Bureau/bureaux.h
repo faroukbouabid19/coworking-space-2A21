@@ -8,9 +8,6 @@
 #include <QPainter>
 
 
-
-
-
 class Bureau
 {
 

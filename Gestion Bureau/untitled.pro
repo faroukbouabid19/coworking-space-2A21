@@ -1,10 +1,15 @@
 QT       += core gui
 QT += sql
 
+ QT      += gui svg
+QT       += core gui sql network multimedia multimediawidgets charts printsupport widgets axcontainer
+
+
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
-
+TARGET = qtqrcode
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
@@ -19,16 +24,24 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     bureaux.cpp \
     connection.cpp \
+    images.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    qrcodegen.cpp \
+    statistique.cpp
 
 HEADERS += \
     bureaux.h \
     connection.h \
-    mainwindow.h
+    images.h \
+    mainwindow.h \
+    qrcodegen.hpp \
+    statistique.h
 
 FORMS += \
-    mainwindow.ui
+    images.ui \
+    mainwindow.ui \
+    statistique.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
