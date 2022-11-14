@@ -3,6 +3,15 @@
 
 #include <QMainWindow>
 #include "personnel.h"
+#include <QWidget>
+#include <QMessageBox>
+#include <QLineEdit>
+#include <QtPrintSupport/QPrinter>
+#include <QFileDialog>
+#include <QTextDocument>
+#include <QTextStream>
+#include <QDateTime>
+#include "statistique.h"
 namespace Ui {
 class MainWindow;
 }
@@ -27,9 +36,25 @@ private slots:
     //void on_line_rech_emp_textChanged(const QString &arg1);
     void on_Recherche_clicked();
     void on_PDF_clicked();
+    void on_btn_chat_emp_clicked();
+    void on_signin_clicked();
+
+    void on_signup_clicked();
+
+    void on_remove_user_clicked();
+
+    void on_show_users_clicked();
+
+    void on_modifier_user_clicked();
+
+
+    void on_stat_clicked();
+
 private:
     Ui::MainWindow *ui;
     personnel p;
+     QSqlQueryModel * afficher();
+     statistique *s;
 };
 
 #endif // MAINWINDOW_H

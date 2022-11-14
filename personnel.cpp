@@ -8,14 +8,14 @@ personnel::personnel()
 {
 age=0;nom="" ;id="";titre="";date=""; prenom="" ;
 }
-personnel::personnel(QString nom,QString date,QString id,QString titre ,QString prenom,int age)
+personnel::personnel(QString id,QString nom,QString prenom,int age,QString titre ,QString date)
 {
-this->nom=nom;
-this->age=age;
-this->date=date;
 this->id=id;
-this->titre=titre;
+this->nom=nom;
 this->prenom=prenom;
+this->age=age;
+this->titre=titre;
+this->date=date;
 
 }
 

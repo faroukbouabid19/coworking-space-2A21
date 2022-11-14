@@ -5,12 +5,22 @@
 #include<QSqlQuery>
 #include<QSqlQueryModel>
 
+#include <QWidget>
+#include <QMessageBox>
+#include <QLineEdit>
+#include <QtPrintSupport/QPrinter>
+#include <QFileDialog>
+#include <QTextDocument>
+#include <QTextStream>
+#include <QDateTime>
+
+
 class personnel
 {
 
 public:
      personnel();
-     personnel(QString nom,QString date,QString id,QString titre ,QString prenom,int age);
+     personnel(QString id,QString nom,QString prenom, int age, QString titre , QString date);
 
     QString getid();
     int getage();
@@ -40,6 +50,8 @@ public:
 private:
     int age;
     QString nom,prenom,date,titre,id;
+
+
 };
 
 

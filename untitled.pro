@@ -1,15 +1,20 @@
+
+QT       += core gui sql network multimedia multimediawidgets charts printsupport widgets axcontainer
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 QT       += core gui
 QT += sql
-
+QT       += network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
+QT    +=serialport
 CONFIG += c++11
+QMAKE_CXXFLAGS += -std=gnu++11
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
+
 
 # You can also make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -20,15 +25,18 @@ SOURCES += \
     connection.cpp \
     main.cpp \
     mainwindow.cpp \
-    personnel.cpp
+    personnel.cpp \
+    statistique.cpp
 
 HEADERS += \
     connection.h \
     mainwindow.h \
-    personnel.h
+    personnel.h \
+    statistique.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    statistique.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
