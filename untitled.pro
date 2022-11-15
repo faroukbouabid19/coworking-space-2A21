@@ -22,19 +22,26 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    chat.cpp \
     connection.cpp \
+    dumesengerconnectiondialog.cpp \
     main.cpp \
     mainwindow.cpp \
     personnel.cpp \
     statistique.cpp
 
 HEADERS += \
+    chat.h \
     connection.h \
+    dumesengerconnectiondialog.h \
     mainwindow.h \
     personnel.h \
     statistique.h
 
 FORMS += \
+    chat.ui \
+    chat.ui \
+    dumesengerconnectiondialog.ui \
     mainwindow.ui \
     statistique.ui
 

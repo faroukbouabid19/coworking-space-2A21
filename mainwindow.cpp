@@ -232,7 +232,7 @@ void MainWindow::on_signin_clicked()
         if(lang != "French")
             A->installTranslator(&t);
          //ui = new person(this);
-       // p1->show();               taw ba3d************************************************************************************
+       // p1->show();
     }
 
 }
