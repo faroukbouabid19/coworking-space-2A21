@@ -1,0 +1,18 @@
+#include "g.h"
+#include"ui_g.h"
+#include"resrvation.h"
+#include <QTabWidget>
+#include <iostream>
+
+using namespace std;
+
+gestionreservation::gestionreservation(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::g)
+{
+    ui->setupUi(this);
+
+
+ui->table_Resrvation->setModel(R.afficher());
+
+}
