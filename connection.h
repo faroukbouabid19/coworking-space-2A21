@@ -3,6 +3,8 @@
 
 #include<QSqlDatabase>
 
+
+//test tuto git
 class connection
 {    QSqlDatabase db;
 
