@@ -1,6 +1,7 @@
 
-QT       += core gui sql
-
+QT       += core gui sql \
+    quick
+QT       += core gui charts
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -19,6 +20,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     connection.cpp \
     gestionreservation.cpp \
+    history.cpp \
     main.cpp \
     mainwindow.cpp \
     resrvation.cpp
@@ -26,6 +28,7 @@ SOURCES += \
 HEADERS += \
     connection.h \
     gestionreservation.h \
+    history.h \
     mainwindow.h \
     resrvation.h
 

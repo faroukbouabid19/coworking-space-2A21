@@ -121,8 +121,8 @@ QSqlQueryModel* Resrvation::afficher()
           model->setHeaderData(1, Qt::Horizontal, QObject::tr("duree"));
           model->setHeaderData(2, Qt::Horizontal, QObject::tr("nombre"));
           model->setHeaderData(3, Qt::Horizontal, QObject::tr("id_c"));
-          model->setHeaderData(5, Qt::Horizontal, QObject::tr("date"));
-          model->setHeaderData(4, Qt::Horizontal, QObject::tr("id_b"));
+          model->setHeaderData(4, Qt::Horizontal, QObject::tr("date"));
+          model->setHeaderData(5, Qt::Horizontal, QObject::tr("id_b"));
 
 
     return model;
@@ -134,7 +134,7 @@ bool Resrvation::supprimer(int num_res)
 {
     QSqlQuery query;
     QString res=QString::number(num_res);
-    query.prepare("DELETE FROM RESRVATION WHERE NUM_RESERVATION=:num_res");
+    query.prepare("DELETE FROM RESERVATION WHERE NUM_RESERVATION=:num_res");
     //query.bindValue(":num_res",res);
  query.bindValue(0,res);
 return query.exec();
@@ -158,6 +158,67 @@ bool Resrvation::modifier(int num_res,int duree,int nombre,QString id_c,QString 
 
 
     return query.exec();
+}
+
+
+QSqlQueryModel * Resrvation::tricroissant_nombre()
+{QSqlQueryModel * model= new QSqlQueryModel();
+
+model->setQuery("select * FROM RESERVATION ORDER BY NOMBRE_DE_PERSONNE ASC");
+model->setHeaderData(0, Qt::Horizontal, QObject::tr("num_res"));
+model->setHeaderData(1, Qt::Horizontal, QObject::tr("duree"));
+model->setHeaderData(2, Qt::Horizontal, QObject::tr("nombre"));
+model->setHeaderData(3, Qt::Horizontal, QObject::tr("id_c"));
+model->setHeaderData(4, Qt::Horizontal, QObject::tr("date"));
+model->setHeaderData(5, Qt::Horizontal, QObject::tr("id_b"));
+
+
+    return model;
+}
+
+QSqlQueryModel * Resrvation::tricroissant_date()
+{QSqlQueryModel * model= new QSqlQueryModel();
+
+model->setQuery("select * FROM RESERVATION ORDER BY DATE_RESERVATION ASC");
+model->setHeaderData(0, Qt::Horizontal, QObject::tr("num_res"));
+model->setHeaderData(1, Qt::Horizontal, QObject::tr("duree"));
+model->setHeaderData(2, Qt::Horizontal, QObject::tr("nombre"));
+model->setHeaderData(3, Qt::Horizontal, QObject::tr("id_c"));
+model->setHeaderData(4, Qt::Horizontal, QObject::tr("date"));
+model->setHeaderData(5, Qt::Horizontal, QObject::tr("id_b"));
+
+
+    return model;
+}
+
+QSqlQueryModel * Resrvation::tricroissant_duree()
+{QSqlQueryModel * model= new QSqlQueryModel();
+
+model->setQuery("select * FROM RESERVATION ORDER BY DATE_RESERVATION ASC");
+model->setHeaderData(0, Qt::Horizontal, QObject::tr("num_res"));
+model->setHeaderData(1, Qt::Horizontal, QObject::tr("duree"));
+model->setHeaderData(2, Qt::Horizontal, QObject::tr("nombre"));
+model->setHeaderData(3, Qt::Horizontal, QObject::tr("id_c"));
+model->setHeaderData(4, Qt::Horizontal, QObject::tr("date"));
+model->setHeaderData(5, Qt::Horizontal, QObject::tr("id_b"));
+
+
+    return model;
+}
+
+
+QSqlQueryModel * Resrvation::recherche(QString cls)
+{QSqlQueryModel * model= new QSqlQueryModel();
+
+model->setQuery("select * FROM RESERVATION WHERE NUM_RESERVATION LIKE '%"+cls+"%'");
+model->setHeaderData(0, Qt::Horizontal, QObject::tr("num_res"));
+model->setHeaderData(1, Qt::Horizontal, QObject::tr("duree"));
+model->setHeaderData(2, Qt::Horizontal, QObject::tr("nombre"));
+model->setHeaderData(3, Qt::Horizontal, QObject::tr("id_c"));
+model->setHeaderData(4, Qt::Horizontal, QObject::tr("date"));
+model->setHeaderData(5, Qt::Horizontal, QObject::tr("id_b"));
+
+return model;
 }
 
 

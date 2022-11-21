@@ -37,10 +37,12 @@ public:
         bool modifier(int num_res,int duree, int nombre,QString id_c,QString date , QString id_b  );
 
 
+         QSqlQueryModel *tricroissant_nombre();
+         QSqlQueryModel *tricroissant_date();
+         QSqlQueryModel *tricroissant_duree();
 
-
-
-
+         QSqlQueryModel *recherche(QString);
+         QSqlQueryModel *stat();
 
 private:
 
