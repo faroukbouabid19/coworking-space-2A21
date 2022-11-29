@@ -6,7 +6,7 @@
 #include "statistique.h"
 #include "images.h"
 #include "qrcodegen.hpp"
-
+#include "arduino.h"
 
 namespace Ui {
 class MainWindow;
@@ -45,12 +45,16 @@ private slots:
 
     void on_pb_images_clicked();
 
+    void chercherFromArduino();
+
 private:
 
     Ui::MainWindow *ui;
     Bureau B;
     statistique *s;
     Images *i;
+    Arduino a;
+    QByteArray data;
 
 };
 

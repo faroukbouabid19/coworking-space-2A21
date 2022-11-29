@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <bureaux.h>
+#include "bureaux.h"
 #include <QIntValidator>
 #include <QMessageBox>
 #include <QPixmap>
@@ -15,7 +15,8 @@
 #include <QTableView>
 #include "images.h"
 #include "qrcodegen.hpp"
-
+#include "arduino.h"
+#include <QDebug>
 
 
 
@@ -38,8 +39,24 @@ MainWindow::MainWindow(QWidget *parent) :
              ui->label_pic_img->setPixmap(piximg);
              QPixmap pixqr("C:/Users/MSI/OneDrive/Documents/Esprit 2/Projet/Icons/qr.ico");
              ui->label_pic_qr->setPixmap(pixqr);
+             int ret=a.connect_arduino();
+             switch(ret)
+             {
+             case (0): qDebug() << "arduino is available and connected to : " << a.getarduino_port_name();
+                 break;
+                 case (1) :qDebug () << "arduino is available but not connected to :" << a.getarduino_port_name ();
+                 break;
+                 case (-1): qDebug() << "arduino is not available :" << a.getarduino_port_name ();
+                 break;
 
-}
+                 }
+
+                QObject:: connect (a.getserial(),SIGNAL (readyRead()), this, SLOT (update_label ())); // permet de lancer //le slot update label suite à la reception du signal readyRead (reception des données).
+                 //QObject:: connect (a.getserial(),SIGNAL (readyRead()), this, SLOT ( chercherFromArduino()));
+
+
+
+    }
 
 MainWindow::~MainWindow()
 {
@@ -230,4 +247,18 @@ void MainWindow::on_pb_images_clicked()
 
   i->setWindowTitle("Images Bureaux");
   i->show();
+}
+void MainWindow::chercherFromArduino(){
+QSqlQuery *query=new QSqlQuery;
+query->prepare("SELECT * FROM BUREAUX WHERE NUMBUREAU like Bureau 3");
+query->exec();
+while(query->next()){
+    QString dispo=query->value(2).toString();
+    if(dispo=="Non Disponible"){
+        qDebug() << dispo;
+        a.write_to_arduino("1");
+    }else{
+        a.write_to_arduino("0");
+    }
+}
 }

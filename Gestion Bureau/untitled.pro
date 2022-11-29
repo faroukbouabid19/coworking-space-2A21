@@ -4,6 +4,7 @@ QT += sql
  QT      += gui svg
 QT       += core gui sql network multimedia multimediawidgets charts printsupport widgets axcontainer
 
+QT += serialport
 
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -22,6 +23,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    arduino.cpp \
     bureaux.cpp \
     connection.cpp \
     images.cpp \
@@ -31,6 +33,7 @@ SOURCES += \
     statistique.cpp
 
 HEADERS += \
+    arduino.h \
     bureaux.h \
     connection.h \
     images.h \
