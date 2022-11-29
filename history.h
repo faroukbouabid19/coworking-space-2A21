@@ -20,15 +20,15 @@ public:
 
    QString getactivity();
    QString get_dateh();
-     QString get_heureh();
+   QString get_heureh();
    bool addHISTORYAjout(int id,QString activity,QString dateh,QString heureh);
 
    QSqlQueryModel* afficherHistorique();
    QSqlQueryModel* afficherh();
-   QSqlQueryModel *displayClause(QString cls);
+   QSqlQueryModel* displayClause(QString cls);
    bool supprimer(int id );
 
-
+                                     
 private:
    int id ;
     QString activity,dateh,heureh;

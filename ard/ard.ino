@@ -41,10 +41,7 @@ void setup()
     lcd.print(" smart cowork parking");
     delay (5000);
     lcd.clear();
-    /*pinMode(redled, OUTPUT);
-    pinMode(greenled, OUTPUT);
-    digitalWrite(redled, LOW);
-    digitalWrite(greenled, LOW);*/
+    
 
     Serial.println("enter ID");
 
@@ -163,10 +160,7 @@ void keypadfunction()
                 delay (200);
                 monServomoteur.write(180);
                 delay(500);
-                /*digitalWrite(greenled, LOW);
-                delay(1000);
-                digitalWrite(redled, HIGH);
-                delay(1000);*/
+              
                 id = "";
                 lcd.clear();
 
@@ -176,11 +170,7 @@ void keypadfunction()
                 lcd.clear();
                 lcd.setCursor(0,0);
                 lcd.print("invailid ID");
-                /*digitalWrite(redled, HIGH);
-                delay(1000);
-                digitalWrite(greenled, LOW);
-                delay(1000);*/
-
+               
             }
             id = "";
 
