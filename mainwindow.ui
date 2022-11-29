@@ -17,9 +17,9 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>90</x>
       <y>20</y>
-      <width>1061</width>
+      <width>1081</width>
       <height>731</height>
      </rect>
     </property>
@@ -29,24 +29,8 @@ font: 10pt &quot;Arial&quot;;
 </string>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
-    <widget class="QWidget" name="page"/>
-    <widget class="QWidget" name="page_4">
-     <widget class="QLabel" name="label_pic_Supprimer1_2">
-      <property name="geometry">
-       <rect>
-        <x>520</x>
-        <y>100</y>
-        <width>41</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </widget>
     <widget class="QWidget" name="page_5">
      <widget class="QTableView" name="users_table">
       <property name="geometry">
@@ -944,7 +928,6 @@ color:rgb(255, 255, 255);</string>
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_7"/>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -953,7 +936,7 @@ color:rgb(255, 255, 255);</string>
      <x>0</x>
      <y>0</y>
      <width>1220</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

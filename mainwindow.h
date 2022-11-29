@@ -12,6 +12,8 @@
 #include <QTextStream>
 #include <QDateTime>
 #include "statistique.h"
+#include "arduino.h"
+#include <QDebug>
 namespace Ui {
 class MainWindow;
 }
@@ -46,15 +48,19 @@ private slots:
     void on_show_users_clicked();
 
     void on_modifier_user_clicked();
+    void chercherFromArduino();
+
+
 
 
     void on_stat_clicked();
-
 private:
     Ui::MainWindow *ui;
     personnel p;
-     QSqlQueryModel * afficher();
+    QSqlQueryModel * afficher();
      statistique *s;
+     Arduino a;
+        QByteArray data;
 };
 
 #endif // MAINWINDOW_H

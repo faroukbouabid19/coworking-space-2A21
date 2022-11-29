@@ -28,42 +28,42 @@ int tot=0;
     q0.prepare("SELECT * FROM PERSONNELS");
     q0.exec();
 
-    //Les bureaux de type architecture
+
     q1_1.prepare("SELECT * FROM PERSONNELS WHERE TITREPROFESSIONNEL='admin'");
     q1_1.exec();
 
-    //q1_2.prepare("SELECT * FROM PERSONNELS WHERE TITREPROFESSIONNEL='directeur finanier'");
-    //q1_2.exec();
+    q1_2.prepare("SELECT * FROM PERSONNELS WHERE AGE<30");
+    q1_2.exec();
 
 
-    //Les bureaux de type informatique
+
     q2_1.prepare("SELECT * FROM PERSONNELS WHERE TITREPROFESSIONNEL='directeur financier'");
     q2_1.exec();
 
-    //q2_2.prepare("SELECT * FROM PERSONNELS WHERE TITREPROFESSIONNEL='responsable client'");
-    //q2_2.exec();
+    q2_2.prepare("SELECT * FROM PERSONNELS WHERE AGE>=60");
+    q2_2.exec();
 
 
-    //Les bureaux de type autres
+
     q3_1.prepare("SELECT * FROM PERSONNELS WHERE TITREPROFESSIONNEL='responsable client'");
     q3_1.exec();
 
-    //q3_2.prepare("SELECT * FROM PERSONNELS WHERE TITREPROFESSIONNEL='responsable bureau'");
-   //q3_2.exec();
+    q3_2.prepare("SELECT * FROM PERSONNELS WHERE AGE<60 && AGE>20");
+   q3_2.exec();
 
 
     while (q0.next()){tot++;}
 
     while (q1_1.next()){c1_1++;}
-    //while (q1_2.next()){c1_2++;}
+    while (q1_2.next()){c1_2++;}
 
 
     while (q2_1.next()){c2_1++;}
-    //while (q2_2.next()){c2_2++;}
+    while (q2_2.next()){c2_2++;}
 
 
     while (q3_1.next()){c3_1++;}
-    //while (q3_2.next()){c3_2++;}
+    while (q3_2.next()){c3_2++;}
 
 
     tot=tot/2;
@@ -101,7 +101,7 @@ int tot=0;
             chart->setAnimationOptions(QChart::SeriesAnimations);
 
             QStringList categories;
-                categories << "TITREPROFESSIONNEL" << "AGE";
+                categories << "TITREPROFESSIONNEL";
             // Adds categories to the axes
                 QBarCategoryAxis *axisX = new QBarCategoryAxis();
                     axisX->append(categories);

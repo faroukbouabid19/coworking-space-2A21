@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "ui_serverwindow.h"
 #include <QMessageBox>
 #include <QLineEdit>
 #include <QtPrintSupport/QPrinter>
@@ -14,13 +13,27 @@
 #include <QPixmap>
 #include <QTranslator>
 #include <QInputDialog>
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+#include "arduino.h"
+#include <QDebug>
+MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
-    ui->LEage->setValidator (new QIntValidator(0,60, this));
+  //  ui->setupUi(this);
+   // ui->LEage->setValidator (new QIntValidator(0,60, this));
     ui->Tabperso->setModel(p.afficher());
+    int ret=a.connect_arduino();
+                switch(ret)
+                {
+                    case (0): qDebug() << "arduino is available and connected to : " << a.getarduino_port_name();
+                    break;
+                    case (1) :qDebug () << "arduino is available but not connected to :" << a.getarduino_port_name ();
+                    break;
+                    case (-1): qDebug() << "arduino is not available :" ;//<< a.getarduino_port_name ();
+                    break;
+
+                }
+
+                   //QObject:: connect (a.getserial(),SIGNAL (readyRead()), this, SLOT (update_label ())); // permet de lancer //le slot update label suite à la reception du signal readyRead (reception des données).
+                    QObject:: connect (a.getserial(),SIGNAL (readyRead()), this, SLOT ( chercherFromArduino()));
 
 
 
@@ -221,8 +234,9 @@ void MainWindow::on_signin_clicked()
         ui->statusbar->showMessage("username is incorrect");
     if(username == username_line && password == password_line && username_line != "" && password_line != "")
     {
-        hide();
-        QTranslator t;
+        ui->stackedWidget->setCurrentIndex(1);
+       // hide();
+       /* QTranslator t;
         QApplication *A=qApp;
         QStringList languages;
         languages << "French" << "English";
@@ -233,10 +247,14 @@ void MainWindow::on_signin_clicked()
             A->installTranslator(&t);
          //ui = new person(this);
        // p1->show();
+
     }
+*/
+       // int index;
+        //index =(index+1)%numStacked;
 
 }
-
+}
 void MainWindow::on_signup_clicked()
 {
     QSqlQuery q;
@@ -337,3 +355,19 @@ void MainWindow::on_stat_clicked()
     s->show();
 
 }
+void MainWindow::chercherFromArduino()
+{
+QSqlQuery *query=new QSqlQuery;
+query->prepare("SELECT * FROM BUREAUX WHERE NUMBUREAU like Bureau 3");
+query->exec();
+while(query->next()){
+    QString dispo=query->value(2).toString();
+    if(dispo=="Non Disponible"){
+        qDebug() << dispo;
+        a.write_to_arduino("1");
+    }else{
+        a.write_to_arduino("0");
+    }
+}
+}
+

@@ -6,7 +6,7 @@
 
 namespace DuarteCorporation
 {
-Chat::Chat(QWidget *parent) :
+/*Chat::Chat(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Chat)
 {
@@ -40,5 +40,6 @@ void DuarteCorporation::Chat::on_bind_clicked()
        }
        mSocket->connectToHost(D.hostname(),D.port());
 
+}*/
 }
-}
+
