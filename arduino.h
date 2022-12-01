@@ -14,8 +14,8 @@ QString getarduino_port_name();
 int close_arduino();
 private:
 QSerialPort * serial; //Cet objet rassemble des informations (vitesse, bits de données, etc.) //et des fonctions (envoi, lecture de réception,...) sur ce qu'est une voie série pour Arduino.
-static const quint16 arduino_uno_vendor_id=9025;
-static const quint16 arduino_uno_producy_id=67;
+static const quint16 arduino_uno_vendor_id=6790;
+static const quint16 arduino_uno_producy_id=29987;
 QString arduino_port_name;
 bool arduino_is_available;
 QByteArray data;

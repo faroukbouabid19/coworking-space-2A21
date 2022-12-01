@@ -1,5 +1,5 @@
 #include "arduino.h"
-
+#include <QDebug>
 Arduino::Arduino()
 {
     arduino_port_name = "";
@@ -11,6 +11,7 @@ int Arduino:: connect_arduino ()
 {
 foreach (const QSerialPortInfo &serial_port_info, QSerialPortInfo::availablePorts()){
     if (serial_port_info.hasVendorIdentifier () && serial_port_info.hasProductIdentifier ()){
+        qDebug()<<serial_port_info.vendorIdentifier();
 if(serial_port_info.vendorIdentifier () == arduino_uno_vendor_id && serial_port_info.productIdentifier ()== arduino_uno_producy_id) {
 arduino_is_available = true;
 arduino_port_name=serial_port_info.portName () ;

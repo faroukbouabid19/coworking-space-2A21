@@ -17,8 +17,8 @@
 #include <QDebug>
 MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWindow)
 {
-  //  ui->setupUi(this);
-   // ui->LEage->setValidator (new QIntValidator(0,60, this));
+   ui->setupUi(this);
+   ui->LEage->setValidator (new QIntValidator(0,60, this));
     ui->Tabperso->setModel(p.afficher());
     int ret=a.connect_arduino();
                 switch(ret)
@@ -355,17 +355,23 @@ void MainWindow::on_stat_clicked()
     s->show();
 
 }
-void MainWindow::chercherFromArduino()
-{
+void MainWindow::chercherFromArduino(){
 QSqlQuery *query=new QSqlQuery;
-query->prepare("SELECT * FROM BUREAUX WHERE NUMBUREAU like Bureau 3");
+query->prepare("SELECT * FROM BUREAUX WHERE NUMBUREAU like 'Bureau 3'");
 query->exec();
 while(query->next()){
     QString dispo=query->value(2).toString();
-    if(dispo=="Non Disponible"){
-        qDebug() << dispo;
+    QString bur=query->value(0).toString();
+
+
+    if((dispo=="Non Disponible")&&(bur== "Bureau 3")){
+   qDebug() << dispo;
+
+
         a.write_to_arduino("1");
-    }else{
+}
+    else if(dispo=="Disponible"){
+        qDebug() << dispo;
         a.write_to_arduino("0");
     }
 }
